@@ -1,0 +1,46 @@
+title = "kalbhor.xyz"
+baseURL = "https://example.com"
+theme = "researcher"
+disableKinds = ["taxonomy", "term"]
+enableEmoji = true
+math = false          # enable KaTeX (https://katex.org/) globally
+googleAnalytics = ""  # add your tracking id
+
+[params]
+  author = "Lakshay Kalbhor"
+  description = "Lakshay Kalbhor's personal website"
+  favicon = "favicon.ico"  # path to a .ico to use as favicon
+  logo = ""  # url or path to a logo to put in the header
+  [params.footer]
+    text = "theme credits"
+    url = "https://github.com/ojroques/hugo-researcher"
+  [params.style]  # appearance options (can be omitted)
+    fontFamily = "Inconsolata"
+    pageWidth = "750px"
+    avatarSize = "90px"
+    colorBlack = "#222222"
+    colorRed = "#2d4fc9"
+  [[params.socialIcons]]
+    icon = "fab fa-twitter"
+    title = "Twitter"
+    url = "https://twitter.com/lakshaykalbhor"
+  [[params.socialIcons]]
+    icon = "fas fa-envelope"
+    title = "E-mail"
+    url = "mailto:kalbhor.xyz@gmail.com"
+
+[permalinks]
+  "/" = "/:filename"
+
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    url = "http://blog.kalbhor.xyz"
+    weight = 1
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects"
+    weight = 2
+
+[markup.goldmark.renderer]
+  unsafe = true  # allow raw HTML in markdown files
