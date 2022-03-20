@@ -2,29 +2,14 @@
 title = "About"
 +++
 
-## About 
-Welcome to my little corner on the internet. I'm Lakshay Kalbhor, a programmer from India. I currently develop software at [Zerodha](https://zerodha.tech/)
+Welcome to my little corner on the internet, I'm Lakshay Kalbhor
 
-## Links
+I work as a Software Developer at [Zerodha Tech](https://zerodha.tech) where I write programs using Go & Python.
 
-[Twitter](http://twitter.com/lakshaykalbhor) - I sometimes share
+I graduated with an Electrical & Electronics degree from Manipal Institute of Technology, Karanataka in July 2021.
 
-[Instagram](http://instagram.com/kalbhor.xyz) - Only add IRL friends here
+### Personal
 
-[LinkedIn](http://linkedin.com/in/lakshaykalbhor) - Mostly unused now
-
-[GitHub](https://github.com/kalbhor) - Personal projects can be found here  
-
-## Personal
-
-- Born in New Delhi, lived here for the majority of my life.
-- Spent <del>four years</del> three years (thanks covid) studying at the coastal town of Manipal in Karanataka
-- Hobbies include - fiddling with computers, playing basketball and videogames (shooters/fighters)
-
-## Previous Work
-
-1. Graduated with an Electrical Engineering degree from Manipal Institute of Technology
-2. Software Developer Intern @ [Tata 1mg](http://1mg.com)
-3. Head of Software Development @ [Manipal The Talk Network](https://www.manipalthetalk.org/)
-4. Software Developer Intern @ Avanti Learning Centres 
-
+- Born and raised in New Delhi, IN 
+- Currently residing in Bangalore, IN
+- Hobbies apart from computers include - 2D fighting games (mostly Mortal Kombat), playing basketball 
