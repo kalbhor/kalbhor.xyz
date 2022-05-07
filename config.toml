@@ -1,49 +1,33 @@
 baseurl = "https://kalbhor.xyz"
 title = "Lakshay Kalbhor"
 author = "Lakshay Kalbhor"
-canonifyurls = true
-languagecode = "en"
-theme = "hugo-tanka"
+paginate = 3
+languageCode = "en"
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+theme = "paper"
 
-enableEmoji = true
-hasCJKLanguage = false
-
-pygmentsstyle = "vs"
-pygmentscodefences = true
-
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
+# prevent build failures when using Hugo's Instagram shortcode due to deprecated Instagram API.
+# See https://github.com/gohugoio/hugo/issues/7228#issuecomment-714490456
+ignoreErrors = ["error-remote-getjson"]
 
 [params]
-  sitename = "kalbhor.xyz"
-  faviconfile = "images/favicon.png"
-  highlightjs = true
-  highlightjslanguages = ["r", "python", "stan"]
-  uselatex = true
-  progressively = false
-# commentsrepo = "user/repo"
+  twitter = 'twitter.com/lakshaykalbhor'                
+  github = 'github.com/kalbhor'                  
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
 
-[[menu.primary]]
-    name = "Home"
-    url = "/"
-    weight = 1
-[[menu.primary]]
+[menu]
+  [[menu.main]]
+    identifier = "about"
     name = "About"
     url = "/about/"
-    weight = 2
-[[menu.primary]]
-    name = "GitHub"
-    url = "https://github.com/kalbhor"
-    weight = 3
-[[menu.primary]]
-    name = "Twitter"
-    url = "https://twitter.com/lakshaykalbhor"
-    weight = 4
-[[menu.primary]]
-    name = "Subscribe"
-    url = "/index.xml"
-    weight = 5
+    weight = 10
+  [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects/"
+    weight = 10

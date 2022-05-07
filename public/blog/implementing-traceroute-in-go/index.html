@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Implementing traceroute in Go - Lakshay Kalbhor </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="" />
+    <meta property="og:site_name" content="Lakshay Kalbhor" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://kalbhor.xyz/blog/implementing-traceroute-in-go/" />
+    <meta property="og:title" content="Implementing traceroute in Go" />
+    <meta property="og:image" content="https://kalbhor.xyz" />
+    <meta property="og:description" content="" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <meta name="twitter:title" content="Implementing traceroute in Go" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="https://kalbhor.xyz" />
+
+    <link rel="canonical" href="https://kalbhor.xyz/blog/implementing-traceroute-in-go/">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://kalbhor.xyzcss/custom.css" />
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github-gist.min.css" integrity="sha512-od7JLoOTxM8w/HSKGzP9Kexc20K9p/M2zxSWsd7H1e4Ctf+8SQFtCWEZnW5u6ul5ehSECa5QmOk9ju2nQMmlVA==" crossorigin="anonymous" />
+    
+
+    
+
+    <link rel="shortcut icon"
+        href="https://kalbhor.xyz/images/favicon.png">
+
+    
+    <link href="https://kalbhor.xyz/index.xml" rel="alternate" type="application/rss+xml" title="Lakshay Kalbhor" />
+    
+</head>
+
+<body>
+    
+<div class="mt-xl header">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <a href="https://kalbhor.xyz">
+                    <h1 class="name">kalbhor.xyz</h1>
+                </a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <ul class="nav nav-primary">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://kalbhor.xyz/">
+                        
+                        Home
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://kalbhor.xyz/about/">
+                        
+                        About
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/kalbhor">
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://twitter.com/lakshaykalbhor">
+                        
+                        Twitter
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://kalbhor.xyz/index.xml">
+                        
+                        Subscribe
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-lg-8">
+                <h1 class="mx-0 mx-md-4 blog-post-title">Implementing traceroute in Go</h1>
+
+                <div class="mb-md-4 meta">
+                    
+                    
+                    <span class="author" title="Lakshay Kalbhor">
+                        Lakshay Kalbhor
+                    </span>
+                    
+                    
+
+                    <span class="date middot" title='Tue Aug 18 2020 00:00:00 UTC'>
+                        2020-08-18
+                    </span>
+
+                    <span class="reading-time middot">
+                        6 min read
+                    </span>
+
+                    <div class="d-none d-md-inline tags">
+                        <ul class="list-unstyled d-inline">
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="markdown blog-post-content">
+                    
+    <p><em>(<a href="https://github.com/kalbhor/tracesite">link</a> for all the code)</em></p>
+<h3 id="what-is-traceroute">What is traceroute?</h3>
+<p>If you&rsquo;ve fiddled with networks you must be familiar with the famous <code>traceroute</code> tool. Its a script that traces the path to a host and prints info on every hop it encounters. To give an example if you run <code>traceroute kalbhor.xyz</code> you should see something like this :</p>
+<pre tabindex="0"><code>❯ traceroute kalbhor.xyz
+traceroute to kalbhor.xyz (18.140.218.13), 64 hops max, 52 byte packets
+ 1  dlinkrouter.dlink (192.168.0.1)  2.035 ms  1.276 ms  1.097 ms
+ 2  10.194.0.1 (10.194.0.1)  5.985 ms  4.006 ms  3.817 ms
+ 3  broadband.actcorp.in (49.207.47.201)  4.320 ms  4.715 ms  4.243 ms
+ 4  broadband.actcorp.in (49.207.47.225)  5.115 ms  5.390 ms  4.893 ms
+ 5  14.142.187.85.static-delhi.vsnl.net.in (14.142.187.85)  3.789 ms  3.746 ms  4.004 ms
+ 6  172.31.180.57 (172.31.180.57)  40.903 ms  41.661 ms  41.531 ms
+ 7  * * ix-ae-4-2.tcore1.cxr-chennai.as6453.net (180.87.36.9)  177.280 ms
+ 8  if-ae-13-2.tcore1.svw-singapore.as6453.net (180.87.36.83)  164.288 ms  176.561 ms  82.274 ms
+ 9  180.87.106.5 (180.87.106.5)  81.871 ms  84.931 ms  83.477 ms
+10  52.93.11.197 (52.93.11.197)  82.368 ms  84.777 ms
+    52.93.11.211 (52.93.11.211)  82.945 ms
+11  52.93.11.79 (52.93.11.79)  83.587 ms
+    52.93.11.67 (52.93.11.67)  78.292 ms
+    52.93.11.87 (52.93.11.87)  79.452 ms
+12  52.93.11.80 (52.93.11.80)  82.862 ms
+    52.93.11.82 (52.93.11.82)  86.355 ms
+    52.93.11.72 (52.93.11.72)  88.732 ms
+13  52.93.9.161 (52.93.9.161)  83.706 ms
+    52.93.9.95 (52.93.9.95)  82.498 ms
+    52.93.9.139 (52.93.9.139)  84.551 ms
+14  203.83.223.77 (203.83.223.77)  84.500 ms
+    52.93.10.95 (52.93.10.95)  79.663 ms  79.812 ms
+</code></pre><p>These might differ for you but for me this is the route my computer takes to connect to <code>kalbhor.xyz</code>. A few interesting details here include <code>dlinkrouter.dlink (192.168.0.1)</code>. Yes, that looks similar! It is my routers local IP, which means my router at home is the first machine to process my request. That&rsquo;s pretty obvious.</p>
+<p>Next we see <code>broadband.actcorp.in (49.207.47.201)</code> which is my ISP. We can also see that my request forwards to a ISP router in Delhi (most probably a regional level ISP) and further moves through Chennai and Singapore (kalbhor.xyz is hosted on an AWS Singapore server).</p>
+<p>This tool is very useful to inspect network paths and solve problems. But aside from that, this tool is extremely interesting and its actual implementation is pretty simple.</p>
+<hr>
+<h3 id="how-does-traceroute-work">How does traceroute work?</h3>
+<p>Now that we understand what traceroute does, lets take a look under the hood. Every TCP/UDP packet that travels has a bunch of headers containing info about the packet. One such header is the <code>ttl</code> header which is the number of hops the packet travels before being dropped. So if we set this <code>ttl</code> header to 1 our packet will reach the first hop and be dropped, if we set it to 2 our packet will reach the second hop and drop, and so on.</p>
+<p>Now that we know how our packets can reach any of the hops between us and our destination, how do we collect info on the hop?
+When a server/router drops a packet, it returns a  <code>ICMP Time Exceeded</code> message back. Parsing this message will allow us to retrieve info on the particular hop. Once the destination is reached (last hop) we are returned a <code>ICMP Destination Unreachable</code> message.</p>
+<hr>
+<h3 id="implementing-traceroute">Implementing traceroute</h3>
+<p>Now that we understand what&rsquo;s happening under the hood, we can roughly design a way to implement traceroute.
+The steps to implement it should look something like this:</p>
+<ul>
+<li>Open a socket connection between us and our destination and send UDP packets</li>
+<li>Start from TTL=1 and keep increasing the TTL value on the UDP packets</li>
+<li>Open a socket that listens for the ICMP messages and parses them</li>
+</ul>
+<hr>
+<h3 id="writing-a-go-application-that-implements-traceroute">Writing a Go application that implements traceroute</h3>
+<p>Now we know what we want and all we need to do is implement it in any language. I&rsquo;m implementing this in Go. The <code>net</code> and <code>syscall</code> package will help us along the way.</p>
+<p><em>Note: I will be using minimal code just to show the main implementation (so you probably wont see me handling errors, etc here). For a more refinded well developed version of this code check out <a href="https://github.com/kalbhor/tracesite">the repository</a>.</em></p>
+<p>Lets start by creating the sockets we&rsquo;ll use for sending and recieving data.</p>
+<pre tabindex="0"><code>sendSocket, err := syscall.Socket(syscall.AF_INET, syscall.SOCK_DGRAM, syscall.IPPROTO_UDP)
+recvSocket, err := syscall.Socket(syscall.AF_INET, syscall.SOCK_RAW, syscall.IPPROTO_ICMP)
+defer syscall.Close(recvSocket)
+defer syscall.Close(sendSocket)
+</code></pre><p>Lets create a ttl variable which we&rsquo;ll iterate and a timevalue variable that defines our timeout</p>
+<pre tabindex="0"><code>ttl := 1
+// For 2000Ms
+tv := syscall.NsecToTimeval(1000 * 1000 * (int64)(2000)) 
+</code></pre><p>Next lets set the ttl and timeout value for the packets we&rsquo;ll send in the socket</p>
+<pre tabindex="0"><code>syscall.SetsockoptInt(sendSocket, 0x0, syscall.IP_TTL, ttl)
+syscall.SetsockoptTimeval(recvSocket, syscall.SOL_SOCKET, syscall.SO_RCVTIMEO, &amp;tv)
+</code></pre><p>At this point our sockets are ready to send and recieve data. What we need to do is find the destination address for our <code>sendSocket</code> and a network interface on our machine for our <code>recvSocket</code></p>
+<pre tabindex="0"><code>func socketAddr() ([4]byte, error) {
+    socketAddr := [4]byte{0, 0, 0, 0}
+    addrs, err := net.InterfaceAddrs()
+    if err != nil {
+        return socketAddr, err
+    }
+
+    for _, a := range addrs {
+        if ipnet, ok := a.(*net.IPNet); ok &amp;&amp; !ipnet.IP.IsLoopback() {
+            if len(ipnet.IP.To4()) == net.IPv4len {
+                copy(socketAddr[:], ipnet.IP.To4())
+                return socketAddr, nil
+            }
+        }
+    }
+    err = errors.New(&#34;Not connected to the Internet&#34;)
+    return socketAddr, err
+}
+
+func destAddr(dest string) ([4]byte, error) {
+    destAddr := [4]byte{0, 0, 0, 0}
+    addrs, err := net.LookupHost(dest)
+    if err != nil {
+        return destAddr, err
+    }
+    addr := addrs[0]
+
+    ipAddr, err := net.ResolveIPAddr(&#34;ip&#34;, addr)
+    if err != nil {
+        return destAddr, err
+    }
+    copy(destAddr[:], ipAddr.IP.To4())
+    return destAddr, nil
+}
+</code></pre><p>And in our main function we use these functions the get the addresses our sockets will use</p>
+<pre tabindex="0"><code>destAddr, err := destAddr(&#34;google.com&#34;)
+socketAddr, err := socketAddr()
+</code></pre><p>Lets bind our <code>recvSocket</code> so that it can recieve messages and lets send a null byte to our destination through our <code>sendSocket</code>. We connect to the port 33434.</p>
+<pre tabindex="0"><code>syscall.Bind(recvSocket, &amp;syscall.SockaddrInet4{Port: 33434, Addr: socketAddr})
+syscall.Sendto(sendSocket, []byte{0x0}, 0, &amp;syscall.SockaddrInet4{Port: 33434, Addr: destAddr})
+</code></pre><p>Now we need to parse the messages being sent on our <code>recvSocket</code></p>
+<pre tabindex="0"><code>p := make([]byte, options.Int(56)) // The integer here is the packet size
+n, from, err := syscall.Recvfrom(recvSocket, p, 0)
+
+ip := from.(*syscall.SockaddrInet4).Addr
+ipString := fmt.Sprintf(&#34;%v.%v.%v.%v&#34;, ip[0], ip[1], ip[2], ip[3])
+host, err := net.LookupAddr(ipString)
+
+fmt.Println(host)
+fmt.Println(ipString)
+</code></pre><p>The Recvfrom method returns a <code>Sockaddr</code> type to our <code>from</code> variable. Hence if we parse our <code>from</code> variable we can get the IP info on the hop. We can use this with <code>net.LookupAddr</code> to run a reverse search and get the hostname (domain name) through the IP.</p>
+<p>We&rsquo;re almost done! All we need to do is wrap this functionality in a for loop and keep updating the <code>ttl</code> variable.</p>
+<pre tabindex="0"><code>func main() {
+    sendSocket, err := syscall.Socket(syscall.AF_INET, syscall.SOCK_DGRAM, syscall.IPPROTO_UDP)
+    recvSocket, err := syscall.Socket(syscall.AF_INET, syscall.SOCK_RAW, syscall.IPPROTO_ICMP)
+    defer syscall.Close(recvSocket)
+    defer syscall.Close(sendSocket)
+
+    ttl := 1
+    tv := syscall.NsecToTimeval(1000 * 1000 * (int64)(2000)) // For 2000Ms
+
+    for {
+        syscall.SetsockoptInt(sendSocket, 0x0, syscall.IP_TTL, ttl)
+        syscall.SetsockoptTimeval(recvSocket, syscall.SOL_SOCKET, syscall.SO_RCVTIMEO, &amp;tv)
+
+        destAddr, err := destAddr(&#34;google.com&#34;)
+        socketAddr, err := socketAddr()
+        destAddrString := fmt.Sprintf(&#34;%v.%v.%v.%v&#34;, destAddr[0], destAddr[1], destAddr[2], destAddr[3]) 
+
+
+        syscall.Bind(recvSocket, &amp;syscall.SockaddrInet4{Port: 33434, Addr: socketAddr})
+        syscall.Sendto(sendSocket, []byte{0x0}, 0, &amp;syscall.SockaddrInet4{Port: 33434, Addr: destAddr})
+
+        p := make([]byte, options.Int(56)) // The integer here is the packet size
+        n, from, err := syscall.Recvfrom(recvSocket, p, 0)
+
+        ip := from.(*syscall.SockaddrInet4).Addr
+        ipString := fmt.Sprintf(&#34;%v.%v.%v.%v&#34;, ip[0], ip[1], ip[2], ip[3])
+        host, err := net.LookupAddr(ipString)
+        
+        fmt.Println(host)
+        fmt.Println(ipString)
+        
+        // We stop our loop if we reach destination or reach max value for ttl
+        if ipString == destAddrString || ttl &gt;= 56 { 
+                break
+        }
+
+        ttl += 1
+
+    }
+
+}
+</code></pre><p>Note that we added an if statement block to end our for loop once we reach the destination address or exceed max value for hops.</p>
+<hr>
+<h3 id="conclusion">Conclusion</h3>
+<p>This is definitely not the most elegant solution but it explains how simple the implementation of <code>traceroute</code> actually is. If you want to check out a more refinded version of this code that compiles well and has many options like set ttl, max hops, timeout, etc check out - <a href="https://github.com/kalbhor/tracesite">My Github Repo</a></p>
+<h5 id="voila----we-just-implemented-the-traceroute-tool">Voila  💫  we just implemented the traceroute tool</h5>
+
+
+
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="comments">
+    <div class="py-3 content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-lg-8">
+                    <div class="comments">
+                        <script src="https://utteranc.es/client.js" repo=""
+                            issue-term="pathname" label="comment" theme="github-light" crossorigin="anonymous" async>
+                            </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    
+
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" defer></script>
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" defer></script>
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/stan.min.js" defer></script>
+        
+        <script>
+            window.addEventListener('load', function() {
+                hljs.initHighlighting();
+            }, true);
+        </script>
+    
+
+    
+
+    
+    
+        
+
+    
+</body>
+
+</html>

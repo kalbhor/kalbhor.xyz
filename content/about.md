@@ -1,15 +1,10 @@
-+++
-title = "About"
-+++
+I'm Lakshay Kalbhor, a programmer from New Delhi, India. 
 
-Welcome to my little corner on the internet, I'm Lakshay Kalbhor
-
-I work as a Software Developer at [Zerodha Tech](https://zerodha.tech) where I write programs using Go & Python.
+I currently reside in Bangalore where I work at [Zerodha Tech](https://zerodha.tech) as a Software Developer. I mostly write programs using Go & Python.
 
 I graduated with an Electrical & Electronics degree from Manipal Institute of Technology, Karanataka in July 2021.
 
-### Personal
+My hobbies include - 2D fighting games (mostly Mortal Kombat) and playing basketball 
 
-- Born and raised in New Delhi, IN 
-- Currently residing in Bangalore, IN
-- Hobbies apart from computers include - 2D fighting games (mostly Mortal Kombat), playing basketball 
+### Contact 
+kalbhor.xyz@<<largest mail service>>
