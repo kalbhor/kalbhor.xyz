@@ -1,4 +1,3 @@
-These are some of my personal projects:
 
 - [MusicRepair](https://github.com/kalbhor/MusicRepair): Offline audio files metadata "fixer".
 
