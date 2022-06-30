@@ -1,8 +1,8 @@
 ---
 author: "Lakshay Kalbhor"
 date: 2022-06-30
-linktitle: Finding redis keys without KEYS command
-title: Finding redis keys without KEYS command
+linktitle: Finding redis keys using a Lua script
+title: Finding redis keys using a Lua script
 weight: 10
 ---
 
