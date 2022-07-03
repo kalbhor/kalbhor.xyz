@@ -1,12 +1,12 @@
 ---
 author: "Lakshay Kalbhor"
-date: 2019-07-19
+date: 2018-04-19
 linktitle: Database backup strategies
 title: Database backup strategies
 weight: 10
 ---
 
-Recently I started interning at Avanti Learning Centres, an Indian startup focussing on providing interesting and lucid ways of learning. Think of Khan Academy, but focused towards the Indian audience.
+Recently I started interning at Avanti Learning Centres, an Indian startup focussing on providing interesting ways of learning.
 
 One of my first tasks as an intern was to automate the backing up of their databases. I had to look at the problem broadly and list out the standard ways of taking database backups, and then choose a method that would work best.
 

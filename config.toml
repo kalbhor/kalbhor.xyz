@@ -1,7 +1,7 @@
 baseurl = "https://kalbhor.xyz"
 title = "Lakshay Kalbhor"
 author = "Lakshay Kalbhor"
-paginate = 3
+paginate = 5
 languageCode = "en"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
@@ -12,8 +12,8 @@ theme = "paper"
 ignoreErrors = ["error-remote-getjson"]
 
 [params]
-  twitter = 'twitter.com/lakshaykalbhor'                
-  github = 'github.com/kalbhor'                  
+  twitter = 'lakshaykalbhor'                
+  github = 'kalbhor'                  
 
 [markup]
   [markup.goldmark]

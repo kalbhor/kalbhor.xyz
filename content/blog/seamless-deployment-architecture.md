@@ -1,6 +1,6 @@
 ---
 author: "Lakshay Kalbhor"
-date: 2018-08-12
+date: 2018-04-12
 linktitle: Designing a seamless deployment architecture
 title: Designing a seamless deployment architecture
 weight: 10

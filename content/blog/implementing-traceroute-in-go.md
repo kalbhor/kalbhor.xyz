@@ -199,7 +199,4 @@ Note that we added an if statement block to end our for loop once we reach the d
 
 ---
 ### Conclusion 
-This is definitely not the most elegant solution but it explains how simple the implementation of `traceroute` actually is. If you want to check out a more refinded version of this code that compiles well and has many options like set ttl, max hops, timeout, etc check out - [My Github Repo](https://github.com/kalbhor/tracesite)
-
-#####  Voila  💫  we just implemented the traceroute tool
-
+This is definitely not the most elegant solution but it explains how simple the implementation of `traceroute` actually is. If you want to check out a more refinded version of this code that compiles well and has many options like set ttl, max hops, timeout, etc check out - [the Github Repo](https://github.com/kalbhor/tracesite)
