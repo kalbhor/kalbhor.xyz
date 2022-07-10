@@ -1,6 +1,6 @@
 Programming libraries & such can be found on [Github](github.com/kalbhor). 
 
-Some fun old scripts (no longer actively maintained):
+Some fun old scripts:
 
 - [MusicRepair](https://github.com/kalbhor/MusicRepair) is an offline audio files metadata "fixer".
 

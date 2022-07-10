@@ -1,11 +1,10 @@
 ---
 author: "Lakshay Kalbhor"
-date: 2022-07-19
+date: 2022-07-10
 linktitle: Differences in postgres & clickhouse Go driver
 title: Differences in postgres & clickhouse Go driver
 weight: 10
 ---
-
 
 Recently at work I was tasked with refactoring a small Go app to write to clickhouse, instead of postgres. 
 The migration was simple, but I encountered a case where Clickhouse's driver behaved differently. 
@@ -16,7 +15,7 @@ The example below tries to write to CH & PG dbs using both `tx.Exec` & `tx.Prepa
 
 The methods to create PG, CH connections have been redracted for brevity. 
 
-```go
+```
 package main
 
 import (
@@ -118,11 +117,4 @@ func insertModel(db *sqlx.DB, model SampleModel) {
 }
 ```
 
-To implement this, a colleague and I ideated over a few solutions : 
 
-- **Using `sync.Pool`** : Load the pool initially with the max connections, and pass this pool around. The issue with this was, we needed a blocking solution. `sync.Pool` returns `nil` if there aren't any objects in the pool (if `new()` isn't specified). This meant that callers would have to implement some retry mechanism based on the value returned by pool.
-
-- **Using a buffered channel** : By setting the capacity of a buffered channel to max connections, all go routines could listen for available connections and return them to the channel when done. This way, the go routines would wait if no connection were available. This was a simple and intuitive solution and should be employed in most cases.
-
-My colleague found the `golang.org/x/sync/semaphore` package, which has a weighted semaphore with `Acquire()` and `Release()` methods.
-Upon benchmarking, we found that this was slightly faster than using a buffered channel.
