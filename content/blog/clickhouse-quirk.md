@@ -1,6 +1,6 @@
 ---
 author: "Lakshay Kalbhor"
-date: 2022-07-10
+date: 2022-07-09
 linktitle: Differences in postgres & clickhouse Go driver
 title: Differences in postgres & clickhouse Go driver
 weight: 10
