@@ -1,0 +1,171 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+    --text-dim: #666666;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation */
+nav {
+    padding: 2rem 1rem;
+}
+
+.hero {
+    text-align: center;
+}
+
+.name {
+    font-size: 2rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+.name-link {
+    text-decoration: none;
+    color: #0066cc;
+}
+
+.name-link:hover {
+    text-decoration: underline;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-link {
+    color: var(--text-dim);
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: var(--text);
+    text-decoration: underline;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Home page specific styles */
+.home-main {
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Content Sections */
+.content-section {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+.section-content {
+    line-height: 1.6;
+}
+
+.section-content p {
+    margin-bottom: 1rem;
+}
+
+/* Page titles */
+.page-title {
+    font-size: 2.5rem;
+    font-weight: normal;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+/* Projects */
+.project {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.project:last-child {
+    border-bottom: none;
+}
+
+.project-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+.project-description {
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-link {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .name {
+        font-size: 1.5rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+
+    main, .home-main {
+        padding: 1rem;
+    }
+
+    .content-section {
+        padding: 0;
+    }
+}

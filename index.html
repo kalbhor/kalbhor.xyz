@@ -3,219 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #ffffff;
-            --text: #000000;
-            --text-dim: #666666;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Navigation */
-
-        /* Main Content */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 2rem 1rem;
-        }
-
-        .hero {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .name {
-            font-size: 3rem;
-            font-weight: normal;
-            margin-bottom: 2rem;
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .social-link {
-            color: var(--text-dim);
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            color: var(--text);
-            text-decoration: underline;
-        }
-
-        /* Content Sections */
-        .content-section {
-            max-width: 600px;
-            width: 100%;
-        }
-
-        .section {
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: normal;
-        }
-
-        .section-content {
-            line-height: 1.6;
-        }
-
-        .section-content p {
-            margin-bottom: 1rem;
-        }
-
-        /* Projects */
-        .project {
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .project:last-child {
-            border-bottom: none;
-        }
-
-        .project-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-weight: normal;
-        }
-
-        .project-description {
-            color: var(--text-dim);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .name {
-                font-size: 2rem;
-            }
-
-            .content-section {
-                padding: 2rem 1rem;
-            }
-        }
-    </style>
+    <title>Lakshay Kalbhor</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <div class="hero">
-            <h1 class="name">Your Name</h1>
-            <div class="social-links">
-                <a href="https://github.com/yourusername" class="social-link" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/yourusername" class="social-link" target="_blank">LinkedIn</a>
-                <a href="https://twitter.com/yourusername" class="social-link" target="_blank">Twitter</a>
-                <a href="mailto:your.email@example.com" class="social-link">Email</a>
-            </div>
-        </div>
-    </nav>
+    <div id="header"></div>
 
-    <main>
+    <main class="home-main">
         <!-- About Section -->
         <div id="about-section" class="content-section">
             <div class="section-content">
                 <p>
-                    Programmer and hobbyist developer from New Delhi, India. I currently reside in Bangalore where I work at Zerodha Tech, building financial software using Go & Kafka.
+                    I'm a programmer, hobbyist developer from New Delhi, India. I currently reside in Bangalore where I work at Zerodha Tech, building financial software mainly using Go, Kafka, and Clickhouse.
                 </p>
                 <p>
-                    Apart from programming my hobbies include playing sports, reading history & travelling. 
+                    Apart from building software my hobbies include playing sports, reading history & travelling. 
                 </p>
-            </div>
-        </div>
-        <br>
-        <hr>
-        <br>
-        <!-- Projects Section -->
-        <div id="projects-section" class="content-section">
-            <h2 class="section-title">Projects</h2>
-            <div class="section-content">
-                <div class="project">
-                    <h3 class="project-title">Project One</h3>
-                    <p class="project-description">
-                        A brief description of your first project. Explain what it does, 
-                        what technologies you used, and what problems it solves.
-                    </p>
-                    <div class="project-links">
-                        <a href="#" class="project-link">Live Demo →</a>
-                        <a href="#" class="project-link">Source Code →</a>
-                    </div>
-                </div>
-
-                <div class="project">
-                    <h3 class="project-title">Project Two</h3>
-                    <p class="project-description">
-                        Description of your second project. Highlight the key features 
-                        and technical challenges you overcame while building it.
-                    </p>
-                    <div class="project-links">
-                        <a href="#" class="project-link">Live Demo →</a>
-                        <a href="#" class="project-link">Source Code →</a>
-                    </div>
-                </div>
-
-                <div class="project">
-                    <h3 class="project-title">Project Three</h3>
-                    <p class="project-description">
-                        Another project description showcasing your skills and the 
-                        impact of your work. Include any notable achievements or metrics.
-                    </p>
-                    <div class="project-links">
-                        <a href="#" class="project-link">Live Demo →</a>
-                        <a href="#" class="project-link">Source Code →</a>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
 
-    <script>
-    </script>
+    <script src="header.js"></script>
 </body>
 </html>
