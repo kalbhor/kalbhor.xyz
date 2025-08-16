@@ -63,6 +63,15 @@ nav {
     text-decoration: underline;
 }
 
+.spotify-link {
+    color: #1db954;
+    text-decoration: none;
+}
+
+.spotify-link:hover {
+    text-decoration: underline;
+}
+
 /* Main Content */
 main {
     flex: 1;
@@ -115,8 +124,8 @@ main {
 
 /* Projects */
 .project {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid #eee;
 }
 
@@ -130,26 +139,21 @@ main {
     font-weight: normal;
 }
 
+.project-title-link {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.project-title-link:hover {
+    text-decoration: underline;
+}
+
 .project-description {
     color: var(--text-dim);
     margin-bottom: 1rem;
     line-height: 1.6;
 }
 
-.project-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.project-link {
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.9rem;
-}
-
-.project-link:hover {
-    text-decoration: underline;
-}
 
 /* Mobile */
 @media (max-width: 768px) {
