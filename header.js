@@ -7,10 +7,11 @@ function createHeader() {
                 </a>
                 <div class="social-links">
                     <a href="projects.html" class="social-link">Projects</a>
-                    <a href="https://github.com/yourusername" class="social-link" target="_blank">GitHub</a>
-                    <a href="https://linkedin.com/in/yourusername" class="social-link" target="_blank">LinkedIn</a>
-                    <a href="https://twitter.com/yourusername" class="social-link" target="_blank">Twitter</a>
-                    <a href="mailto:your.email@example.com" class="social-link">Email</a>
+                    <a href="https://github.com/kalbhor" class="social-link" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/lakshaykalbhor" class="social-link" target="_blank">LinkedIn</a>
+                    <a href="https://twitter.com/lakshaykalbhor" class="social-link" target="_blank">Twitter</a>
+                    <a href="https://instagram.com/kalbhor.xyz" class="social-link" target="_blank">Instagram</a>
+                    <a href="mailto:lakshaykalbhor@gmail.com" class="social-link">Email</a>
                 </div>
             </div>
         </nav>
